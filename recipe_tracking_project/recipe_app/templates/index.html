@@ -12,5 +12,11 @@
         </head>
         <body>
             <h1>Welcome to Recipe Management App</h1>
-            <h2>Hello, my dude</h2>
+            {% for recipe in recipes %}
+                <h3>{{ recipe.title }}</h3>
+                <img>{{ recipe.picture }}</img>
+                <h3>{{ recipe.description }}</h3>
+                <h3>{{ recipe.meat_type }}</h3>
+                <h3>{{ recipe.category }}</h3>
+            {% endfor %}
         </body>

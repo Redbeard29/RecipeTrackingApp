@@ -1,5 +1,14 @@
-from django.shortcuts import render, redirect, HttpResponse
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from .models import *
+import random
+import bcrypt
+import time
 
 # Create your views here.
 def index(request):
-    return render(request, "index.html")
+    user_recipes = Recipe.objects.all()
+    context = {
+        'recipes': user_recipes,
+    }
+    return render(request, "index.html", context)

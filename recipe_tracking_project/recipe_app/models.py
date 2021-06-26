@@ -1,6 +1,7 @@
 from django.db import models
 import re
 import bcrypt
+import datetime
 
 email_regex = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 
@@ -64,6 +65,9 @@ class RecipeManager(models.Manager):
             errors['link_to_recipe'] = 'Link must be at least 6 characters'
         if len(postData['description']) == 0:
             errors['description'] = 'Description is required'
+        current_date = datetime.date.today()
+        if (postData['last_made_at']) > current_date:
+            errors['last_made_at'] = 'Date cannot be in the future'
 
 class Recipe(models.Model):
     MEAT_CHOICES = (
@@ -91,13 +95,14 @@ class Recipe(models.Model):
     title = models.CharField(max_length=90)
     picture = models.ImageField(upload_to="recipe_photo_album")
     link_to_recipe = models.URLField(max_length=200)
-    description = models.TextField()
+    description = models.TextField(blank=True)
     meat_type = models.CharField(max_length=2, choices=MEAT_CHOICES, default=MEAT_CHOICES[0][0])
     category = models.CharField(max_length=2, choices=CATEGORY_CHOICES, default=CATEGORY_CHOICES[0][0])
     best_quantity = models.DecimalField(max_digits=3, decimal_places=2, default=1)
-    rating = models.DecimalField(max_digits=3, decimal_places=2)
-    comments = models.TextField()
-    last_made_at = models.DateTimeField()
+    rating = models.DecimalField(max_digits=3, decimal_places=2, blank=True)
+    comments = models.TextField(blank=True)
+    last_made_at = models.DateField()
+    quick_and_easy = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = RecipeManager()
