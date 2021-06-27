@@ -103,6 +103,7 @@ class Recipe(models.Model):
     comments = models.TextField(blank=True)
     last_made_at = models.DateField()
     quick_and_easy = models.BooleanField(default=False)
+    saved_by = models.ForeignKey(User, related_name='saved_recipes', on_delete=models.CASCADE, default=1)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = RecipeManager()
