@@ -5,29 +5,29 @@
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             {% load static %}
             <link rel="stylesheet" href="{% static 'style.css' %}">
+            <!-- Bootstrap CDN -->
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+            crossorigin="anonymous">
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
             <link href="https://fonts.googleapis.com/css?family=Raleway:100,300,500,700" rel="stylesheet">
             <link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet">
             <title>Recipe App</title>
         </head>
         <body>
-            <div id="header">
-                <h1>Welcome to Recipe Management App</h1>
+            <div id="header" class="text-center">
+                <h1 class="p-5">Welcome to Recipe Management App</h1>
             </div>
-            <div id="recipe_display">
+            <div id="recipe_display" class="text-center">
+                <h1>Recipes</h1>
                 {% for recipe in recipes %}
+                <div class="recipes d-inline-block" id="recipe_{{ recipe.id }}">
                     <h3>{{ recipe.title }}</h3>
                     <img src="{{ recipe.picture.url }}" alt="recipe_img">
+                    <h3>Meat: {{ recipe.get_meat_type_display }}</h3>
+                    <h3>Category: {{ recipe.get_category_display }}</h3>
                     <h3>{{ recipe.description }}</h3>
-                    <h3>{{ recipe.meat_type }}</h3>
-                    <h3>{{ recipe.category }}</h3>
                     <h3>Recipe saved by: {{ recipe.saved_by.first_name }} {{ recipe.saved_by.last_name }}</h3>
-                {% endfor %}
-            </div>
-            <div id="user_display">
-                {% for user in users %}
-                    <h3>{{ user.first_name }} {{user.last_name}}</h3>
-                    <h3>{{ user.email }}</h3>
+                </div>
                 {% endfor %}
             </div>
         </body>
