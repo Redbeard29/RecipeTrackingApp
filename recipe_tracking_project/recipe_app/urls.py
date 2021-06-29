@@ -6,6 +6,11 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('', views.index),
+    path('my_recipe_list', views.recipe_list),
+    path('register', views.registration_display),
+    path('register_attempt', views.register),
+    path('login', views.login_display),
+    path('login_attempt', views.login),
     path('user', views.UserView.as_view()),
     path('recipe', views.RecipeView.as_view()),
     path('user/list', views.UserListView.as_view()),
