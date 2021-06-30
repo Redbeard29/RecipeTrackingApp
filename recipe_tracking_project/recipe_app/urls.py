@@ -15,5 +15,7 @@ urlpatterns = [
     path('recipe', views.RecipeView.as_view()),
     path('user/list', views.UserListView.as_view()),
     path('recipe/list', views.RecipeListView.as_view())
-]
+] 
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
