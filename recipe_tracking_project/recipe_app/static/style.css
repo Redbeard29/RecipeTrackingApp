@@ -1,4 +1,12 @@
-.recipes img{
+body {
+    font-family: "Raleway", sans-serif;
+    background: linear-gradient(#edecec, white); 
+}
+
+#recipe_cards .card-img-top{
     height: 300px;
-    width: 190px;
+}
+
+#recipe_display a{
+    text-decoration: none;
 }
