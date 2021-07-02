@@ -19,7 +19,7 @@ def recipe_list(request):
         }
         return render(request, 'recipe_list.html', context)
     else:
-        return redirect('login')
+        return redirect('/login')
 
 def registration_display(request):
     return render(request, 'registration.html')
