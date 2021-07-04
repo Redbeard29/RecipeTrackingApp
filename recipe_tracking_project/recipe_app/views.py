@@ -12,10 +12,15 @@ def index(request):
 def recipe_list(request):
     if 'user_id' in request.session:
         current_user = User.objects.get(id=request.session['user_id'])
-        recipe_list = Recipe.objects.filter(saved_by=current_user)
+        current_users_recipes = Recipe.objects.filter(saved_by=current_user)
+        recipe_list = current_users_recipes.filter(have_made_before=True)
+        favorited_recipes = current_users_recipes.filter(is_favorite=True)
+        saved_recipes = current_users_recipes.filter(have_made_before=False)
         context = {
             'user': current_user,
-            'recipes': recipe_list,
+            'all_recipes': recipe_list,
+            'favorite_recipes' : favorited_recipes,
+            'saved_recipes' : saved_recipes,
         }
         return render(request, 'recipe_list.html', context)
     else:

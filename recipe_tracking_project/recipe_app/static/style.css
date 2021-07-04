@@ -7,6 +7,6 @@ body {
     height: 300px;
 }
 
-#recipe_display a{
+#all_recipe_display a, #favorite_recipe_display a, #saved_recipe_display a{
     text-decoration: none;
 }
