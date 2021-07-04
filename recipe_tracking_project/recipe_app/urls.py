@@ -11,6 +11,8 @@ urlpatterns = [
     path('register_attempt', views.register),
     path('login', views.login_display),
     path('login_attempt', views.login),
+    path('add_recipe', views.add_recipe_display),
+    path('add_recipe_attempt', views.add_recipe),
     path('user', views.UserView.as_view()),
     path('recipe', views.RecipeView.as_view()),
     path('user/list', views.UserListView.as_view()),

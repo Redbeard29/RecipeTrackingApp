@@ -1,3 +1,4 @@
+from django.http import request
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import *
@@ -62,6 +63,18 @@ def login(request):
         return redirect('/my_recipe_list')
     
     return redirect('/login')
+
+def add_recipe_display(request):
+    return render(request, 'add_recipe.html')
+
+def add_recipe(request):
+    if request.method == "POST":
+        errors = Recipe.objects.recipe_validator(request.POST)
+        if len(errors) > 0:
+            for key, value in errors.items():
+                messages.error(request, value)
+            return redirect('/add_recipe')       
+    return redirect('/my_recipe_list')
 
 class UserView(generics.CreateAPIView):
     queryset = User.objects.all()

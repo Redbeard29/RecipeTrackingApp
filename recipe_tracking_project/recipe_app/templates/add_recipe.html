@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            {% load static %}
+            <link rel="stylesheet" href="{% static 'style.css' %}">
+            <!-- Bootstrap CDN -->
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+            crossorigin="anonymous">
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+            <link href="https://fonts.googleapis.com/css?family=Raleway:100,300,500,700" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet">
+            <title>Recipe App</title>
+        </head>
+        <body>
+            <div class="container p-3">
+                <h1 class="text-center mt-5">My Recipe Database</h1>
+                <div id="register_form" class="container border rounded px-5 py-4 mt-3 mb-5 shadow" style="max-width: 400px;">
+                    <h3 class="text-center mb-4">Add a recipe</h3>
+                    {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                    <form action="/add_recipe_attempt" method="POST">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="title" placeholder="Title">
+                        </div>
+                        <button class="btn btn-primary btn-block btn-lg shadow-lg my-3">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </body>

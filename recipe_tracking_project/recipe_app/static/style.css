@@ -5,6 +5,7 @@ body {
 
 #recipe_cards .card-img-top{
     height: 300px;
+    width: 200px;
 }
 
 #all_recipe_display a, #favorite_recipe_display a, #saved_recipe_display a{
