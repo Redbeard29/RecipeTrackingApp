@@ -3,6 +3,8 @@ import re
 import bcrypt
 import datetime
 
+from django.db.models.manager import EmptyManager
+
 email_regex = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 
 class UserManager(models.Manager):

@@ -14,14 +14,15 @@ def recipe_list(request):
     if 'user_id' in request.session:
         current_user = User.objects.get(id=request.session['user_id'])
         current_users_recipes = Recipe.objects.filter(saved_by=current_user)
-        recipe_list = current_users_recipes.filter(have_made_before=True)
+        previously_made = current_users_recipes.filter(have_made_before=True)
         favorited_recipes = current_users_recipes.filter(is_favorite=True)
         saved_recipes = current_users_recipes.filter(have_made_before=False)
         context = {
             'user': current_user,
-            'all_recipes': recipe_list,
+            'recipes': current_users_recipes,
+            'have_made': previously_made,
             'favorite_recipes' : favorited_recipes,
-            'saved_recipes' : saved_recipes,
+            'saved_for_later' : saved_recipes,
         }
         return render(request, 'recipe_list.html', context)
     else:
