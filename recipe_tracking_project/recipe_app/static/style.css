@@ -6,6 +6,11 @@ body {
 
 #recipe_cards .card-img-top{
     height: 300px;
+    
+}
+
+#recipe_cards:hover{
+    transform: scale(1.1);
 }
 
 #all_recipe_display a, #favorite_recipe_display a, #saved_recipe_display a{
