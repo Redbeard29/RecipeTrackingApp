@@ -28,9 +28,6 @@
                                         <img src="{{ recipe.picture.url }}" alt="recipe_img" class="card-img-top pt-4 px-4">
                                         <div class="card-body text-center pb-3">
                                             <h4 class="card-title">{{ recipe.title }}</h4>
-                                            {% if recipe.meat_type == 'FI' %}
-                                                <i class="fas fa-fish fa-2x text-success"></i>
-                                            {% endif %}
                                             <h4 class="card-text text-success">{{ recipe.category }}</h4>
                                             {% if recipe in favorite_recipes %}
                                                 <i class="fas fa-star fa-2x text-warning"></i>
